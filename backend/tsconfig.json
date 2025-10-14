@@ -13,6 +13,8 @@
       "@repositories/*": ["repositories/*"],
       "@models/*": ["models/*"],
       "@middlewares/*": ["middlewares/*"],
+      "@utils/*": ["utils/*"],
+      "@config/*": ["config/*"]
     },
   },
   "include": ["src/**/*"],

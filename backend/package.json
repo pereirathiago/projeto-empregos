@@ -6,7 +6,12 @@
   "description": "Backend do sistema Busca e Oferta de Empreogos desenvolvido para a disciplina Tecnologias Cliente Servidor do curso Analise e Desenvolvimento de Sistema - UTFPR",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "migrate:latest": "knex migrate:latest",
+    "migrate:rollback": "knex migrate:rollback",
+    "migrate:make": "knex migrate:make",
+    "seed:run": "knex seed:run",
+    "seed:make": "knex seed:make"
   },
   "repository": {
     "type": "git",
@@ -17,17 +22,24 @@
     "email": "pereira.tp.thiago@gmail.com"
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "knex": "^3.1.0",
     "nodemon": "^3.1.10",
+    "pg": "^8.16.3",
     "reflect-metadata": "^0.2.2",
     "tsyringe": "^4.10.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.3.1",
+    "@types/pg": "^8.15.5",
     "prettier": "3.6.2",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",

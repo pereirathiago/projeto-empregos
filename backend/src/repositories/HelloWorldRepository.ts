@@ -1,4 +1,4 @@
-import { IHelloWorldRepository } from "./interfaces/IHelloWorldRepository"
+import { IHelloWorldRepository } from './interfaces/IHelloWorldRepository'
 
 class HelloWorldRepository implements IHelloWorldRepository {
   public getMessage(): string {

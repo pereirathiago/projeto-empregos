@@ -1,5 +1,5 @@
-import { Request, Response } from 'express'
 import { IHelloWorldRepository } from '@repositories/interfaces/IHelloWorldRepository'
+import { Request, Response } from 'express'
 import { inject, injectable } from 'tsyringe'
 
 @injectable()

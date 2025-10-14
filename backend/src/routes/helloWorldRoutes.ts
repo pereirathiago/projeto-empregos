@@ -1,5 +1,5 @@
-import { Router } from 'express'
 import { HelloWorldController } from '@controllers/HelloWorldController'
+import { Router } from 'express'
 import { container } from 'tsyringe'
 
 const router = Router()

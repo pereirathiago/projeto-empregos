@@ -1,7 +1,7 @@
-import 'reflect-metadata'
-import './container'
 import cors from 'cors'
 import express from 'express'
+import 'reflect-metadata'
+import './container'
 import routes from './routes'
 
 const app = express()

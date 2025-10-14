@@ -12,6 +12,10 @@
     "type": "git",
     "url": "git+https://github.com/pereirathiago/projeto-empregos.git"
   },
+  "author": {
+    "name": "Thiago Pereira",
+    "email": "pereira.tp.thiago@gmail.com"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",

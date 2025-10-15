@@ -9,12 +9,11 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "paths": {
-      "@controllers/*": ["controllers/*"],
-      "@repositories/*": ["repositories/*"],
-      "@models/*": ["models/*"],
-      "@middlewares/*": ["middlewares/*"],
+      "@modules/*": ["modules/*"],
+      "@shared/*": ["shared/*"],
+      "@config/*": ["config/*"],
       "@utils/*": ["utils/*"],
-      "@config/*": ["config/*"]
+      "@errors/*": ["shared/errors/*"]
     },
   },
   "include": ["src/**/*"],

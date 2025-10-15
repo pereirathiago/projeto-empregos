@@ -1,4 +1,5 @@
 import { config } from '@config/index'
+import 'reflect-metadata'
 import app from './app'
 
 const PORT = config.server.port || 3333

@@ -1,4 +1,4 @@
-import { ConflictError, ForbiddenError, NotFoundError, SendMailError, ServerError, UnauthorizedError } from '@utils/errors'
+import { ConflictError, ForbiddenError, NotFoundError, SendMailError, ServerError, UnauthorizedError } from '@shared/errors'
 
 export type HttpResponse<T = any> = {
   statusCode: number

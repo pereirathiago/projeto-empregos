@@ -1,8 +1,7 @@
-import { AppError } from '@utils/errors/app-error'
+import { AppError } from '@errors/app-error'
+import '@shared/container'
 import cors from 'cors'
 import express, { NextFunction, Request, Response } from 'express'
-import 'reflect-metadata'
-import './container'
 import routes from './routes'
 
 const app = express()

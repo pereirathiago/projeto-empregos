@@ -31,7 +31,7 @@ export class SendMailError extends AppError {
 }
 
 export class ConflictError extends AppError {
-  constructor(type: string) {
-    super(`${type} em uso!`, 409)
+  constructor(message: string) {
+    super(message, 409)
   }
 }

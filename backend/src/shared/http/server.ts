@@ -1,4 +1,5 @@
 import { config } from '@config/index'
+import 'express-async-errors'
 import 'reflect-metadata'
 import app from './app'
 

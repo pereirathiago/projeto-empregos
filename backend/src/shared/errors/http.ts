@@ -1,66 +1,37 @@
-export class ServerError extends Error {
-  readonly error: Error
-  constructor (error?: Error) {
-    super(error.message)
-    this.error = {
-      name: 'ServerError',
-      message: error.message,
-      stack: error?.stack
-    }
+import { AppError } from './app-error'
+
+export class ServerError extends AppError {
+  constructor(error?: Error) {
+    super(error ? error.message : 'Internal server error', 500)
   }
 }
 
-export class UnauthorizedError extends Error {
-  readonly error: Error
-  constructor () {
-    super('Unauthorized')
-    this.error = {
-      name: 'UnauthorizedError',
-      message: 'Unauthorized'
-    }
+export class UnauthorizedError extends AppError {
+  constructor() {
+    super('Unauthorized', 401)
   }
 }
 
-export class ForbiddenError extends Error {
-  readonly error: Error
-  constructor () {
-    super('Access denied')
-    this.error = {
-      name: 'ForbiddenError',
-      message: 'Access denied'
-    }
+export class ForbiddenError extends AppError {
+  constructor() {
+    super('Access denied', 403)
   }
 }
 
-export class NotFoundError extends Error {
-  readonly error: Error
-  constructor () {
-    super('Not found')
-    this.error = {
-      name: 'NotFoundError',
-      message: 'Not found'
-    }
+export class NotFoundError extends AppError {
+  constructor() {
+    super('Not found', 404)
   }
 }
 
-export class SendMailError extends Error {
-  readonly error: Error
-  constructor () {
-    super('Send mail failure')
-    this.error = {
-      name: 'SendMailError',
-      message: 'Send mail failure'
-    }
+export class SendMailError extends AppError {
+  constructor() {
+    super('Error sending email', 502)
   }
 }
 
-export class ConflictError extends Error {
-  readonly error: Error
-  constructor (type: string) {
-    super('Conflict failure')
-    this.error = {
-      name: 'ConflictError',
-      message: `${type} em uso!`
-    }
+export class ConflictError extends AppError {
+  constructor(type: string) {
+    super(`${type} em uso!`, 409)
   }
 }

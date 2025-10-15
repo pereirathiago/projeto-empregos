@@ -1,4 +1,5 @@
 import { ConflictError, ForbiddenError, NotFoundError, SendMailError, ServerError, UnauthorizedError } from '@shared/errors'
+import { AppError } from '@shared/errors/app-error'
 
 export type HttpResponse<T = any> = {
   statusCode: number
@@ -20,32 +21,32 @@ export const badRequest = (error: Error): HttpResponse<Error> => ({
   data: error,
 })
 
-export const unauthorized = (): HttpResponse<Error> => ({
+export const unauthorized = (): HttpResponse<AppError> => ({
   statusCode: 401,
-  data: new UnauthorizedError().error,
+  data: new UnauthorizedError(),
 })
 
-export const forbidden = (): HttpResponse<Error> => ({
+export const forbidden = (): HttpResponse<AppError> => ({
   statusCode: 403,
-  data: new ForbiddenError().error,
+  data: new ForbiddenError(),
 })
 
-export const notFound = (): HttpResponse<Error> => ({
+export const notFound = (): HttpResponse<AppError> => ({
   statusCode: 404,
-  data: new NotFoundError().error,
+  data: new NotFoundError(),
 })
 
-export const conflictError = (type: string): HttpResponse<Error> => ({
+export const conflictError = (type: string): HttpResponse<AppError> => ({
   statusCode: 409,
-  data: new ConflictError(type).error,
+  data: new ConflictError(type),
 })
 
-export const serverError = (error: Error): HttpResponse<Error> => ({
+export const serverError = (error: Error): HttpResponse<AppError> => ({
   statusCode: 500,
-  data: new ServerError(error).error,
+  data: new ServerError(error),
 })
 
-export const sendMailFailure = (): HttpResponse<Error> => ({
+export const sendMailFailure = (): HttpResponse<AppError> => ({
   statusCode: 502,
-  data: new SendMailError().error,
+  data: new SendMailError(),
 })

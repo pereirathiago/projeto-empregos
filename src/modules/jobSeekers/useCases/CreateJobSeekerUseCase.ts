@@ -1,4 +1,5 @@
 import { RegisterUserUseCase } from '@modules/authentication/useCases/RegisterUserUseCase'
+import { AppError } from '@shared/errors/app-error'
 import { Knex } from 'knex'
 import { inject, injectable } from 'tsyringe'
 import { ICreateJobSeekerUserDTO } from '../dtos/ICreateJobSeekerDTO'
@@ -27,6 +28,10 @@ class CreateJobSeekerUseCase {
         trx,
       )
 
+      if (!newUser.id) {
+        throw new AppError('User not created', 500)
+      }
+
       const newProfile = await this.jobSeekerRepository.create(
         {
           user_id: newUser.id,
@@ -35,6 +40,10 @@ class CreateJobSeekerUseCase {
         },
         trx,
       )
+
+      if (!newProfile.id) {
+        throw new AppError('Job seeker not created', 500)
+      }
 
       return newProfile
     })

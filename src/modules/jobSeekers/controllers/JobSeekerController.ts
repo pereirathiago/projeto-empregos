@@ -11,7 +11,7 @@ class JobSeekerController {
 
     const jobSeeker = await createJobSeekerUseCase.execute(data)
 
-    return res.status(201).json(jobSeeker)
+    return res.status(201).json({ message: 'Created' })
   }
 }
 

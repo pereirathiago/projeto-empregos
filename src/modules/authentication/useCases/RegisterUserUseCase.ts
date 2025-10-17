@@ -1,4 +1,4 @@
-import { ConflictError } from '@shared/errors'
+import { ConflictError, ServerError } from '@shared/errors'
 import { hash } from 'bcrypt'
 import { Knex } from 'knex'
 import { inject, injectable } from 'tsyringe'
@@ -29,6 +29,10 @@ class RegisterUserUseCase {
         },
         trx,
       )
+
+      if (!newUser.id) {
+        throw new ServerError()
+      }
 
       return newUser
     })

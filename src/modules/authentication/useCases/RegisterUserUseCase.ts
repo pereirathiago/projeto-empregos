@@ -9,11 +9,11 @@ import { IUserRepository } from '../repositories/interfaces/IUserRepository'
 @injectable()
 class RegisterUserUseCase {
   constructor(
-    @inject('UserRepository') private userRepository: IUserRepository,
     @inject('KnexConnection') private db: Knex,
+    @inject('UserRepository') private userRepository: IUserRepository,
   ) {}
 
-  async execute(userData: IRegisterUserDTO): Promise<Omit<IUser, 'password'>> {
+  async execute(userData: IRegisterUserDTO, trx?: Knex.Transaction): Promise<Omit<IUser, 'password'>> {
     const user = await this.db.transaction(async (trx) => {
       const userAlreadyExists = await this.userRepository.findByUsername(userData.username, trx)
       if (userAlreadyExists) {

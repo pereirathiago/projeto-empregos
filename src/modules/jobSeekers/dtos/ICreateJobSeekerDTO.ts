@@ -1,4 +1,4 @@
-interface ICreateJobSeekerDTO {
+interface ICreateJobSeekerUserDTO {
   name: string
   username: string
   password: string
@@ -8,4 +8,10 @@ interface ICreateJobSeekerDTO {
   education?: string
 }
 
-export { ICreateJobSeekerDTO }
+interface ICreateJobSeekerDTO {
+  user_id: number
+  experience?: string
+  education?: string
+}
+
+export { ICreateJobSeekerDTO, ICreateJobSeekerUserDTO }

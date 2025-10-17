@@ -6,6 +6,6 @@ const router = Router()
 
 const registerUserController = container.resolve(UserController)
 
-router.post('/register', registerUserController.register.bind(registerUserController))
+// router.post('/register', registerUserController.register.bind(registerUserController))
 
 export default router

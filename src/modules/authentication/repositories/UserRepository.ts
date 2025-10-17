@@ -11,7 +11,12 @@ class UserRepository implements IUserRepository {
   async create(userData: IRegisterUserDTO, trx: Knex.Transaction): Promise<IUser> {
     const [user] = await trx('users')
       .insert({
-        ...userData,
+        name: userData.name,
+        username: userData.username,
+        email: userData.email,
+        phone: userData.phone,
+        password: userData.password,
+        role: userData.role,
       })
       .returning('*')
 

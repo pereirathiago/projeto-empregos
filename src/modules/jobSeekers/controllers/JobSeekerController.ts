@@ -1,10 +1,11 @@
 import { Request, Response } from 'express'
 import { container } from 'tsyringe'
+import { ICreateJobSeekerUserDTO } from '../dtos/ICreateJobSeekerDTO'
 import { CreateJobSeekerUseCase } from '../useCases/CreateJobSeekerUseCase'
 
 class JobSeekerController {
   async create(req: Request, res: Response): Promise<Response> {
-    const data = req.body
+    const data = req.body as ICreateJobSeekerUserDTO
 
     const createJobSeekerUseCase = container.resolve(CreateJobSeekerUseCase)
 

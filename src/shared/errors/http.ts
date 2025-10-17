@@ -35,3 +35,12 @@ export class ConflictError extends AppError {
     super(message, 409)
   }
 }
+
+export class ValidationError extends AppError {
+  public readonly details: Array<{ field: string; error: string }>
+
+  constructor(details: Array<{ field: string; error: string }>) {
+    super('Validation error', 422)
+    this.details = details
+  }
+}

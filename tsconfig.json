@@ -6,6 +6,7 @@
     "module": "commonjs",
     "baseUrl": "./src",
     "types": ["express", "node"],
+    "typeRoots": ["./src/@types", "./custom_typings", "./@types", "./node_modules/@types"],
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "esModuleInterop": true,

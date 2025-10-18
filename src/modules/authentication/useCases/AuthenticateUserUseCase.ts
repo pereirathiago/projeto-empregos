@@ -24,13 +24,13 @@ class AuthenticateUserUseCase {
     const user = await this.userRepository.findByUsername(data.username)
 
     if (!user) {
-      throw new UnauthorizedError()
+      throw new UnauthorizedError('Invalid credentials')
     }
 
     const passwordMatch = await compare(data.password, user.password)
 
     if (!passwordMatch) {
-      throw new UnauthorizedError()
+      throw new UnauthorizedError('Invalid credentials')
     }
 
     const expiresInSeconds = this.parseExpiresIn(config.auth.expires_in_token)

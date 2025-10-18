@@ -7,14 +7,14 @@ export class ServerError extends AppError {
 }
 
 export class UnauthorizedError extends AppError {
-  constructor(message: string = 'Invalid credentials') {
+  constructor(message: string = 'Invalid Token') {
     super(message, 401)
   }
 }
 
 export class ForbiddenError extends AppError {
   constructor() {
-    super('Access denied', 403)
+    super('Forbidden', 403)
   }
 }
 

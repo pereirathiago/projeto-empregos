@@ -34,6 +34,14 @@ class UserRepository implements IUserRepository {
 
     return user
   }
+
+  async findById(id: number, trx?: Knex.Transaction): Promise<IUser | undefined> {
+    const connection = trx || this.db
+
+    const user = await connection('users').where({ id }).first()
+
+    return user
+  }
 }
 
 export { UserRepository }

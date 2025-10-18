@@ -7,4 +7,13 @@ interface IJobSeeker {
   updated_at: Date
 }
 
-export { IJobSeeker }
+interface IUserJobSeeker {
+  name: string
+  username: string
+  email?: string
+  phone?: string
+  experience?: string
+  education?: string
+}
+
+export { IJobSeeker, IUserJobSeeker }

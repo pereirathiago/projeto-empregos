@@ -19,8 +19,8 @@ export class ForbiddenError extends AppError {
 }
 
 export class NotFoundError extends AppError {
-  constructor() {
-    super('Not found', 404)
+  constructor(message: string = 'Not found') {
+    super(message, 404)
   }
 }
 

@@ -25,7 +25,15 @@ async function ensureAuthenticated(request: Request, response: Response, next: N
     throw new UnauthorizedError()
   }
 
-  const { sub: userId, username, role } = verify(token, config.auth.secret_token) as IPayload
+  let payload: IPayload
+
+  try {
+    payload = verify(token, config.auth.secret_token) as IPayload
+  } catch {
+    throw new UnauthorizedError()
+  }
+
+  const { sub: userId, username, role } = payload
 
   const userSessionRepository = container.resolve<IUserSessionRepository>('UserSessionRepository')
   const session = await userSessionRepository.findByToken(token)

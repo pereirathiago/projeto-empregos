@@ -1,7 +1,7 @@
 import { Knex } from 'knex'
 import { inject, injectable } from 'tsyringe'
 import { ICreateJobSeekerDTO } from '../dtos/ICreateJobSeekerDTO'
-import { IJobSeeker } from '../models/IJobSeeker'
+import { IJobSeeker, IUserJobSeeker } from '../models/IJobSeeker'
 import { IJobSeekerRepository } from './interfaces/IJobSeekerRepository'
 
 @injectable()
@@ -18,6 +18,27 @@ class JobSeekerRepository implements IJobSeekerRepository {
       .returning('*')
 
     return createdJobSeeker
+  }
+
+  async getById(id: number, trx?: Knex.Transaction): Promise<IUserJobSeeker | undefined> {
+    const connection = trx || this.db
+
+    const jobSeeker = await connection('job_seekers as js')
+      .join('users as u', 'js.user_id', 'u.id')
+      .select('u.id', 'u.name', 'u.username', 'u.email', 'u.phone', 'js.experience', 'js.education')
+      .where('u.id', id)
+      .first()
+
+    if (!jobSeeker) return undefined
+
+    return {
+      name: jobSeeker.name,
+      username: jobSeeker.username,
+      email: jobSeeker.email,
+      phone: jobSeeker.phone,
+      experience: jobSeeker.experience,
+      education: jobSeeker.education,
+    }
   }
 }
 

@@ -9,6 +9,7 @@ interface IUserRepository {
   findByUsername(username: string, trx?: Knex.Transaction): Promise<IUser | undefined>
   findById(id: number, trx?: Knex.Transaction): Promise<IUser | undefined>
   update(id: number, updateData: IUpdateUserDTO, trx: Knex.Transaction): Promise<IUser>
+  delete(id: number, trx?: Knex.Transaction): Promise<void>
 }
 
 export { IUserRepository }

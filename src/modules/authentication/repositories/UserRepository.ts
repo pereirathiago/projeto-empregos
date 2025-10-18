@@ -57,6 +57,12 @@ class UserRepository implements IUserRepository {
 
     return updatedUser
   }
+
+  async delete(id: number, trx?: Knex.Transaction): Promise<void> {
+    const connection = trx || this.db
+
+    await connection('users').where({ id }).delete()
+  }
 }
 
 export { UserRepository }

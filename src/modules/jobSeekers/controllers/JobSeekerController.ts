@@ -3,6 +3,7 @@ import { Request, Response } from 'express'
 import { container } from 'tsyringe'
 import { ICreateJobSeekerUserDTO } from '../dtos/ICreateJobSeekerDTO'
 import { CreateJobSeekerUseCase } from '../useCases/CreateJobSeekerUseCase'
+import { DeleteJobSeekerUseCase } from '../useCases/DeleteJobSeekerUseCase'
 import { GetJobSeekerUseCase } from '../useCases/GetJobSeekerUseCase'
 import { UpdateJobSeekerUseCase } from '../useCases/UpdateJobSeekerUseCase'
 
@@ -46,6 +47,21 @@ class JobSeekerController {
     const jobSeeker = await updateJobSeekerUseCase.execute(Number(id), data)
 
     return res.status(200).json()
+  }
+
+  async delete(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params
+    const user = req.user
+
+    if (!user || user.id !== id) {
+      throw new ForbiddenError()
+    }
+
+    const deleteJobSeekerUseCase = container.resolve(DeleteJobSeekerUseCase)
+
+    await deleteJobSeekerUseCase.execute(Number(id))
+
+    return res.status(200).json({ message: 'User deleted successfully' })
   }
 }
 

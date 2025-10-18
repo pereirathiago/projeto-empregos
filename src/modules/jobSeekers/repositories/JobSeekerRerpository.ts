@@ -55,6 +55,12 @@ class JobSeekerRepository implements IJobSeekerRepository {
 
     return updatedJobSeeker
   }
+
+  async deleteByUserId(userId: number, trx?: Knex.Transaction): Promise<void> {
+    const connection = trx || this.db
+
+    await connection('job_seekers').where({ user_id: userId }).delete()
+  }
 }
 
 export { JobSeekerRepository }

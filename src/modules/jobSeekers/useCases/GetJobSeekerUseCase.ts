@@ -8,7 +8,7 @@ class GetJobSeekerUseCase {
   constructor(@inject('JobSeekerRepository') private jobSeekerRepository: IJobSeekerRepository) {}
 
   async execute(id: number): Promise<IUserJobSeeker> {
-    const jobSeeker = await this.jobSeekerRepository.getById(id)
+    const jobSeeker = await this.jobSeekerRepository.getByUserId(id)
 
     if (!jobSeeker) {
       throw new NotFoundError('User not found')

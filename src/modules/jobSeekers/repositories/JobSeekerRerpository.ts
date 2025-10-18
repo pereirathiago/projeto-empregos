@@ -1,6 +1,7 @@
 import { Knex } from 'knex'
 import { inject, injectable } from 'tsyringe'
 import { ICreateJobSeekerDTO } from '../dtos/ICreateJobSeekerDTO'
+import { IUpdateJobSeekerDTO } from '../dtos/IUpdateJobSeekerDTO'
 import { IJobSeeker, IUserJobSeeker } from '../models/IJobSeeker'
 import { IJobSeekerRepository } from './interfaces/IJobSeekerRepository'
 
@@ -20,13 +21,13 @@ class JobSeekerRepository implements IJobSeekerRepository {
     return createdJobSeeker
   }
 
-  async getById(id: number, trx?: Knex.Transaction): Promise<IUserJobSeeker | undefined> {
+  async getByUserId(userId: number, trx?: Knex.Transaction): Promise<IUserJobSeeker | undefined> {
     const connection = trx || this.db
 
     const jobSeeker = await connection('job_seekers as js')
       .join('users as u', 'js.user_id', 'u.id')
       .select('u.id', 'u.name', 'u.username', 'u.email', 'u.phone', 'js.experience', 'js.education')
-      .where('u.id', id)
+      .where('u.id', userId)
       .first()
 
     if (!jobSeeker) return undefined
@@ -39,6 +40,20 @@ class JobSeekerRepository implements IJobSeekerRepository {
       experience: jobSeeker.experience,
       education: jobSeeker.education,
     }
+  }
+
+  async update(userId: number, updateData: IUpdateJobSeekerDTO, trx: Knex.Transaction): Promise<IJobSeeker> {
+    const connection = trx || this.db
+
+    const [updatedJobSeeker] = await connection('job_seekers')
+      .where({ user_id: userId })
+      .update({
+        experience: updateData.experience,
+        education: updateData.education,
+      })
+      .returning('*')
+
+    return updatedJobSeeker
   }
 }
 

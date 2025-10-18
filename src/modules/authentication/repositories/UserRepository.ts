@@ -1,5 +1,6 @@
 import { Knex } from 'knex'
 import { inject, injectable } from 'tsyringe'
+import { IUpdateUserDTO } from '../dtos/IUpdateUserDTO'
 import { IRegisterUserDTO } from '../dtos/IUserDTO'
 import { IUser } from '../models/IUser'
 import { IUserRepository } from './interfaces/IUserRepository'
@@ -41,6 +42,20 @@ class UserRepository implements IUserRepository {
     const user = await connection('users').where({ id }).first()
 
     return user
+  }
+
+  async update(id: number, updateData: IUpdateUserDTO, trx: Knex.Transaction): Promise<IUser> {
+    const [updatedUser] = await trx('users')
+      .where({ id })
+      .update({
+        name: updateData.name,
+        email: updateData.email,
+        phone: updateData.phone,
+        password: updateData.password,
+      })
+      .returning('*')
+
+    return updatedUser
   }
 }
 

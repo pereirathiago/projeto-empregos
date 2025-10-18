@@ -6,7 +6,7 @@ interface IUserSessionRepository {
   create(sessionData: ICreateUserSessionDTO, trx?: Knex.Transaction): Promise<IUserSession>
   findByToken(token: string, trx?: Knex.Transaction): Promise<IUserSession | undefined>
   findByUserId(userId: number, trx?: Knex.Transaction): Promise<IUserSession[]>
-  deleteByToken(token: string, trx?: Knex.Transaction): Promise<void>
+  deleteByToken(token: string, trx?: Knex.Transaction): Promise<boolean>
   deleteExpiredSessions(trx?: Knex.Transaction): Promise<void>
 }
 

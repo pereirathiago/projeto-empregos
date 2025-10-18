@@ -38,10 +38,12 @@ class UserSessionRepository implements IUserSessionRepository {
     return sessions
   }
 
-  async deleteByToken(token: string, trx?: Knex.Transaction): Promise<void> {
+  async deleteByToken(token: string, trx?: Knex.Transaction): Promise<boolean> {
     const connection = trx || this.db
 
-    await connection('user_sessions').where({ token }).delete()
+    const deletedCount = await connection('user_sessions').where({ token }).delete()
+
+    return deletedCount > 0
   }
 
   async deleteExpiredSessions(trx?: Knex.Transaction): Promise<void> {

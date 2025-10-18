@@ -35,7 +35,6 @@ async function ensureAuthenticated(request: Request, response: Response, next: N
   }
 
   if (new Date(session.expires_at) < new Date()) {
-    await userSessionRepository.deleteExpiredSessions()
     throw new UnauthorizedError()
   }
 
@@ -50,6 +49,7 @@ async function ensureAuthenticated(request: Request, response: Response, next: N
     id: userId,
     username: currentUser.username,
     role: currentUser.role,
+    token: token,
   }
 
   next()

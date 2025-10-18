@@ -5,8 +5,8 @@ import jobSeekersRoutes from './jobSeekerRoutes'
 
 const router = Router()
 
+router.use('/', authRoutes)
 router.use('/hello-world', helloWorldRoutes)
-router.use('/auth', authRoutes)
 router.use('/users', jobSeekersRoutes)
 
 export default router

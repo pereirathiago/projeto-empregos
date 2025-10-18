@@ -7,8 +7,8 @@ export class ServerError extends AppError {
 }
 
 export class UnauthorizedError extends AppError {
-  constructor() {
-    super('Unauthorized', 401)
+  constructor(message: string = 'Invalid credentials') {
+    super(message, 401)
   }
 }
 

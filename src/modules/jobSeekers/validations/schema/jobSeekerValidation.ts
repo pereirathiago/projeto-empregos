@@ -19,32 +19,42 @@ const createJobSeekerValidation: Yup.ObjectSchema<ICreateJobSeekerUserDTO> = Yup
     .min(3)
     .max(20)
     .matches(/^[a-zA-Z0-9]+$/, 'invalid_format'),
-  email: yup.string().optional().email('invalid_format'),
+  email: yup.string().optional().nullable().email('invalid_format'),
   phone: Yup.string()
     .optional()
+    .nullable()
     .test('phone-validation', 'invalid_format', function (value) {
       if (!value || value === '') return true
-      if (value.length < 10 || value.length > 14) return false
+      const onlyNumbers = value.replace(/\D/g, '')
+      if (onlyNumbers.length < 10 || onlyNumbers.length > 14) return false
       return true
     }),
   experience: Yup.string()
     .optional()
+    .nullable()
     .test('experience-validation', 'too_short', function (value) {
       if (!value || value === '') return true
       if (value.length < 10) return false
+      return true
+    })
+    .test('experience-validation', 'too_long', function (value) {
+      if (!value || value === '') return true
       if (value.length > 600) {
-        this.createError({ message: 'too_long' })
         return false
       }
       return true
     }),
   education: Yup.string()
     .optional()
+    .nullable()
     .test('education-validation', 'too_short', function (value) {
       if (!value || value === '') return true
       if (value.length < 10) return false
+      return true
+    })
+    .test('experience-validation', 'too_long', function (value) {
+      if (!value || value === '') return true
       if (value.length > 600) {
-        this.createError({ message: 'too_long' })
         return false
       }
       return true
@@ -62,32 +72,42 @@ const updateJobSeekerValidation: Yup.ObjectSchema<IUpdateJobSeekerUserDTO> = Yup
     .min(3)
     .max(20)
     .matches(/^[a-zA-Z0-9]+$/, 'invalid_format'),
-  email: yup.string().optional().email('invalid_format'),
+  email: yup.string().optional().nullable().email('invalid_format'),
   phone: Yup.string()
     .optional()
+    .nullable()
     .test('phone-validation', 'invalid_format', function (value) {
       if (!value || value === '') return true
-      if (value.length < 10 || value.length > 14) return false
+      const onlyNumbers = value.replace(/\D/g, '')
+      if (onlyNumbers.length < 10 || onlyNumbers.length > 14) return false
       return true
     }),
   experience: Yup.string()
     .optional()
+    .nullable()
     .test('experience-validation', 'too_short', function (value) {
       if (!value || value === '') return true
       if (value.length < 10) return false
+      return true
+    })
+    .test('experience-validation', 'too_long', function (value) {
+      if (!value || value === '') return true
       if (value.length > 600) {
-        this.createError({ message: 'too_long' })
         return false
       }
       return true
     }),
   education: Yup.string()
     .optional()
+    .nullable()
     .test('education-validation', 'too_short', function (value) {
       if (!value || value === '') return true
       if (value.length < 10) return false
+      return true
+    })
+    .test('experience-validation', 'too_long', function (value) {
+      if (!value || value === '') return true
       if (value.length > 600) {
-        this.createError({ message: 'too_long' })
         return false
       }
       return true

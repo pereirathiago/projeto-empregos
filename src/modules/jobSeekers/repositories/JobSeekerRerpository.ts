@@ -48,8 +48,8 @@ class JobSeekerRepository implements IJobSeekerRepository {
     const [updatedJobSeeker] = await connection('job_seekers')
       .where({ user_id: userId })
       .update({
-        experience: updateData.experience,
-        education: updateData.education,
+        experience: updateData.experience || '',
+        education: updateData.education || '',
       })
       .returning('*')
 

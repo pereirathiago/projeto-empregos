@@ -48,10 +48,10 @@ class UserRepository implements IUserRepository {
     const [updatedUser] = await trx('users')
       .where({ id })
       .update({
-        name: updateData.name,
-        email: updateData.email,
-        phone: updateData.phone,
-        password: updateData.password,
+        name: updateData.name || '',
+        email: updateData.email || '',
+        phone: updateData.phone || '',
+        password: updateData.password || '',
       })
       .returning('*')
 

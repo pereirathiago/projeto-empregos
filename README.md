@@ -12,17 +12,16 @@ Projeto desenvolvido para a disciplina **Tecnologias Cliente Servidor** do curso
 
 - [Sobre o Projeto](#-sobre-o-projeto)
 - [Tecnologias Utilizadas](#-tecnologias-utilizadas)
-- [Arquitetura](#-arquitetura)
 - [Pré-requisitos](#-pré-requisitos)
 - [Executando o Projeto](#-executando-o-projeto)
 - [Licença](#-licença)
-- [Autor](#-autor)
 
 ---
 
 ## 🎯 Sobre o Projeto
 
 Sistema backend para gerenciamento de vagas de emprego e candidatos, desenvolvido com foco em **Clean Architecture**, **SOLID** e boas práticas de desenvolvimento. O sistema permite cadastro de candidatos (usuário comum), autenticação JWT, e gerenciamento completo de perfis de usuários.
+
 ---
 
 ## 🚀 Tecnologias Utilizadas
